@@ -15,15 +15,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           textTheme: TextTheme(headline6: TextStyle(fontFamily: "Sukar"))),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key}) : super(key: key);
 
-  final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -45,9 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var remainPassengers = 0;
   var remainAmount = 0.0;
 
-
   void didTapCalculateOgra() {
-    print("called");
     if ((ograTxtController.text != null) &&
         (passengersCountController.text != null)) {
       passengerOgra = double.parse(ograTxtController.text);
@@ -61,20 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-
   void didTapRemainOgra() {
-    print("remain called");
-    // Scaffold.of(context).showSnackBar(SnackBar(
-    //   content: Text(
-    //     "Thanks for using snackbar",
-    //     textAlign: TextAlign.center,
-    //     style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-    //   ),
-    //   duration: Duration(seconds: 2),
-    //   backgroundColor: Colors.red,
-    // ));
     if ((remainPassengersController.text != null) &&
-        (remainAmountPaidController.text != null)) {
+        (remainAmountPaidController.text != null) &&
+        (ograTxtController.text != null)) {
       remainAmount = double.parse(remainAmountPaidController.text);
       remainPassengers = int.parse(remainPassengersController.text);
 
@@ -293,8 +280,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 40,
               ),
+              Container(
+                height: 60,
+                width: double.infinity,
+                child: Text("Made with ❤️ using flutter.",textAlign: TextAlign.center,),
+              )
             ],
           ),
         ),
